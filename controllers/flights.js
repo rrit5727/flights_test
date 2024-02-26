@@ -1,18 +1,30 @@
 const Flight = require('../models/flight');
 
-module.exports = {
-  index,
-  new: newFlight,
-  
-};
 
-function index(req, res) {
-    res.render('todos/index', {
-      todos: Todo.getAll(),
-      title: 'All To-Dos'
-    });
+
+async function index(req, res) {
+    const movies = await Flight.find({});
+    res.render('flights/index', { title: 'All Flights', flights });
   }
 
   function newFlight(req, res) {
     res.render('flights/new', { title: 'Add Flight', errorMsg: ''});
   }
+
+
+
+  const create = async (req, res) => {
+    try {
+        await Flight.create(req.body);
+        res.redirect('/flights');
+    } catch (err) {
+        console.log(err);
+        res.render('flights/new', { errorMsg: err.message });
+    }
+};
+
+module.exports = {
+    index,
+    new: newFlight,
+    create 
+  };

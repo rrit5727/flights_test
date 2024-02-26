@@ -3,7 +3,7 @@ const Flight = require('../models/flight');
 
 
 async function index(req, res) {
-    const movies = await Flight.find({});
+    const flights = await Flight.find({});
     res.render('flights/index', { title: 'All Flights', flights });
   }
 
@@ -11,6 +11,10 @@ async function index(req, res) {
     res.render('flights/new', { title: 'Add Flight', errorMsg: ''});
   }
 
+async function show(req, res) {
+    const flight = await Flight.findById(req.params.id)
+    res.render('flights/show', { title: 'Flight Detail', flight} )
+}
 
 
   const create = async (req, res) => {
@@ -26,5 +30,6 @@ async function index(req, res) {
 module.exports = {
     index,
     new: newFlight,
-    create 
+    create,
+    show 
   };

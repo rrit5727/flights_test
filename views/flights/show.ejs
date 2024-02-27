@@ -14,13 +14,12 @@
 </section>
 
 <br><br><h2>Destinations</h2>
-<form id="add-destination-form" method="POST"
-  action="/movies/<%= flight._id %>/destinations">
+<form id="add-destination-form" action="/flights/<%= flight._id %>/destinations" method="POST">
   <label>Destination:</label>
-  <textarea name="destination"></textarea>
+  <input type="text" name="destination">
   <label>Arrival:</label>
-  <textarea name="arrival"></textarea>
-<input type="submit" value="Add destination">
+  <input type="datetime-local" name="arrival">
+  <input type="submit" value="Add destination">
 </form>
 
 

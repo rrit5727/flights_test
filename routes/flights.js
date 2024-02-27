@@ -8,9 +8,9 @@ const flightsCtrl = require('../controllers/flights');
 //   res.send('respond with a resource');
 // });
 
+router.get('/', flightsCtrl.index);
 router.get('/new', flightsCtrl.new);
 router.post('/', flightsCtrl.create);
-router.get('/', flightsCtrl.index);
 router.get('/:id', flightsCtrl.show);
 	
 

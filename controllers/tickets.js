@@ -20,13 +20,15 @@ module.exports = {
 //   }
 
 async function create(req, res) {
-    
+  const flight = await Flight.findById(req.params.id);
     try {
-      await Ticket.create(req.body);
+      const ticket = await Ticket.create(req.body);
+      ticket.flight = flight
+      await ticket.save()
+      res.redirect(`/flights/${flight._id}` )
     } catch (err) {
       console.log(err);
     }
-    res.redirect(`/flights`);//${flight._id} 'flight is undefined for some reason so can't redirect to show view 
   }
 
   //
